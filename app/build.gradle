@@ -3,15 +3,15 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace 'com.strawing.fuckdevicepolicy'
+    compileSdk 37 // libxposed service/interface 102 require compileSdk 37
 
     defaultConfig {
         applicationId "com.strawing.fuckdevicepolicy"
-        minSdk 24
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
-
+        minSdk 29      // Android 10+: where DISALLOW_INSTALL_UNKNOWN_SOURCES_GLOBALLY exists
+        targetSdk 34   // kept below 35 so the old layout is not forced edge-to-edge
+        versionCode 2
+        versionName "2.0"
     }
 
     buildTypes {
@@ -21,8 +21,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding true
@@ -30,10 +30,14 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.navigation:navigation-fragment:2.9.0'
+    implementation 'androidx.navigation:navigation-ui:2.9.0'
 
-
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment:2.5.0'
-    implementation 'androidx.navigation:navigation-ui:2.5.0'
-    compileOnly 'de.robv.android.xposed:api:82'
+    // Modern Xposed API (hooks, runs inside system_server) - provided by the framework at runtime
+    compileOnly 'io.github.libxposed:api:102.0.0'
+    // Module-app <-> framework link (remote preferences, activation status)
+    implementation 'io.github.libxposed:service:102.0.0'
 }
