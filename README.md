@@ -20,7 +20,7 @@ Use `dumpsys device_policy` (run via `adb shell` or root) to check what restrict
 
 Only apply this module to [System Framework] (which is the default scope setting), no need to apply to any other apps, especially DO NOT apply to Microsoft Intune, otherwise your Xposed and ROOT will be detected.
 
-Due to LSPosed's [New XSharedPreferences](https://github.com/LSPosed/LSPosed/wiki/New-XSharedPreferences), if you are using **LSPosed**, please **Activate this module and reboot firstly, before edit and save your custom policies!!!** (In another word, when you click the save button, this module should be activated, if you are using LSPosed). Otherwise your custom policies will not be saved correctly for LSPosed.
+**Requires LSPosed with libxposed API 102 support (modern API) and Android 10+.** Enable the module with scope *System Framework* (`system`), reboot once, then open the app. Policies are stored through the framework's remote preferences, so saving in the app takes effect immediately - no reboot needed. Open the app at least once after each boot so it can sync.
 
 # 简体中文 (Simplified Chinese)
 
@@ -40,7 +40,7 @@ Due to LSPosed's [New XSharedPreferences](https://github.com/LSPosed/LSPosed/wik
 
 这个模块的作用域只需要勾选“系统框架”（即保持默认设置即可），不需要勾选其它App，特别不要勾上Microsoft Intune，不然Xposed和ROOT会被它检测到。
 
-由于LSPosed的[New XSharedPreferences](https://github.com/LSPosed/LSPosed/wiki/New-XSharedPreferences)机制，如果你用的是**LSPosed**，在App中编辑/保存策略你的自定义策略之前，**请先激活这个模块并重启！！！**（换句话说，**当你点击保存按钮时，这个模块应处于激活状态！**），否则你保存的策略无法在LSPosed环境中正确读取。
+**需要支持 libxposed API 102（现代 Xposed API）的 LSPosed，Android 10 及以上。** 启用模块并勾选“系统框架”(`system`)，重启一次，然后打开App。策略通过框架的远程配置(remote preferences)保存，在App里保存后立即生效，不再需要重启。
 
 # UI
 
