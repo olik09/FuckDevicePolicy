@@ -13,4 +13,10 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/DetectorFragment"
+        android:name="com.strawing.fuckdevicepolicy.DetectorFragment"
+        android:label="@string/detector_label"
+        tools:layout="@layout/fragment_detector" />
+
 </navigation>
